@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07101d" />
+  <meta name="description" content="Découvre notre jeu Roblox. Créé par Snazyx & Vexy." />
+  <title>Lancé de Manette — Roblox Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--cyan:#08e5f4;--blue:#126bff;--pink:#ff20dc;--gold:#ffd56a;--ink:#050914;--white:#f7fbff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--white);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;min-height:100vh}
+    body::before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 80% 25%,#073e6d 0,transparent 38%),radial-gradient(ellipse at 10% 80%,#4b0870 0,transparent 35%),#050914}
+    body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.22;background-image:linear-gradient(#ffffff0b 1px,transparent 1px),linear-gradient(90deg,#ffffff0b 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+    .topbar{width:min(1180px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:24px 0;position:relative;z-index:5}
+    .brand{font-family:Orbitron,sans-serif;font-size:1.15rem;font-weight:900;letter-spacing:.16em}.brand span{color:var(--cyan);text-shadow:0 0 18px #08e5f477}
+    .top-actions{display:flex;align-items:center;gap:14px}
+    .lang-switch{display:flex;padding:4px;border:1px solid #ffffff30;background:#07101dcc;border-radius:999px;gap:3px}
+    .lang-switch button{border:0;border-radius:999px;background:transparent;color:#aab8cc;padding:8px 12px;font-weight:800;font-size:.78rem;transition:.2s}
+    .lang-switch button.active{background:var(--white);color:#07101d}
+    .status{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#a5f8ff;display:flex;align-items:center;gap:8px}.status::before{content:"";width:7px;height:7px;background:#53ffae;border-radius:50%;box-shadow:0 0 12px #53ffae}
+    .hero{width:min(1180px,92%);margin:0 auto;min-height:calc(100vh - 88px);display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:42px;padding:18px 0 28px;position:relative}
+    .hero-copy{position:relative;z-index:2}.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:9px 13px;border:1px solid #08e5f44d;background:#08e5f40c;border-radius:999px;color:#9df8ff;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow .spark{color:var(--gold);font-size:1rem}
+    h1{font-family:Orbitron,sans-serif;font-size:clamp(3.2rem,7.5vw,6.6rem);line-height:.92;letter-spacing:-.065em;margin:24px 0 20px;text-transform:uppercase;font-weight:900}
+    h1 .gradient{display:block;background:linear-gradient(100deg,#fff 5%,var(--cyan) 40%,#4c7dff 68%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px #08e5f425)}
+    .intro{font-size:clamp(1rem,1.5vw,1.12rem);line-height:1.8;color:#b9c6d8;max-width:550px;margin:0 0 28px}
+    .features{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}.feature{font-size:.8rem;color:#e5efff;border:1px solid #ffffff20;background:#ffffff08;padding:9px 12px;border-radius:8px}.feature b{color:var(--cyan);margin-right:6px}
+    .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.play-btn{display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:17px 24px;border:0;border-radius:11px;color:#051019;font-weight:900;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(110deg,#fff27b,var(--gold) 40%,#ff9e3d);box-shadow:0 8px 0 #a95c20,0 0 32px #ffd56a35;transition:transform .2s,box-shadow .2s}.play-btn:hover{transform:translateY(-3px);box-shadow:0 11px 0 #a95c20,0 0 45px #ffd56a70}.play-btn .arrow{font-size:1.3rem}.subnote{font-size:.78rem;color:#8394ab}
+    .visual{position:relative;min-width:0;display:grid;place-items:center}.visual::before{content:"";position:absolute;width:90%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 30deg,#08e5f400,#08e5f455,#ff20dc44,#ffd56a55,#08e5f400);filter:blur(28px);animation:spin 18s linear infinite}
+    .game-card{width:min(100%,500px);position:relative;padding:10px;border-radius:25px;background:linear-gradient(135deg,#ffffffa0,#ffffff10 25%,#08e5f455 60%,#ff20dc77);box-shadow:0 30px 90px #0009,0 0 50px #08e5f425;transform:rotate(2deg);animation:float 6s ease-in-out infinite}
+    .game-card-inner{position:relative;border-radius:17px;overflow:hidden;background:#0a1425;aspect-ratio:4/4.15;border:1px solid #ffffff24}.game-card-inner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .7s}.game-card:hover img{transform:scale(1.045)}
+    .image-shade{position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#030713e8)}.image-caption{position:absolute;left:22px;right:22px;bottom:20px;display:flex;justify-content:space-between;align-items:end;gap:10px}.image-caption small{color:#9fefff;letter-spacing:.16em;text-transform:uppercase;font-weight:800;font-size:.68rem}.image-caption h2{font-family:Orbitron,sans-serif;font-size:1.55rem;margin:7px 0 0}.roblox-mark{display:grid;place-items:center;width:47px;height:47px;border:1px solid #ffffff66;background:#ffffff18;border-radius:12px;font-size:1.35rem;backdrop-filter:blur(8px)}
+    .floating-tag{position:absolute;z-index:2;padding:12px 15px;border:1px solid #ffffff2c;background:#07101ddd;backdrop-filter:blur(12px);border-radius:12px;box-shadow:0 12px 35px #0005;font-size:.76rem;font-weight:800}.floating-tag span{color:var(--gold)}.tag-one{top:13%;left:-4%;transform:rotate(-6deg)}.tag-two{right:-3%;bottom:14%;transform:rotate(5deg)}
+    .creators{width:100%;margin:25px 0 0;padding:17px 0 0;border-top:1px solid #ffffff1a;display:flex;align-items:center;justify-content:space-between;gap:14px}.creators-label{font-size:.7rem;color:#8092aa;text-transform:uppercase;letter-spacing:.2em;font-weight:800}.creator-list{display:flex;align-items:center;gap:20px}.creator{display:flex;align-items:center;gap:10px}.creator img{width:43px;height:43px;object-fit:cover;border-radius:50%;border:2px solid #ffd56a;box-shadow:0 0 16px #ffd56a25}.creator strong{font-size:.9rem}.creator small{display:block;color:#8ea0b8;font-size:.7rem;margin-top:3px}.amp{font-family:Orbitron,sans-serif;color:var(--gold);font-weight:900}
+    .intro-overlay{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:#030711;overflow:hidden;animation:overlayOut .8s ease 3.5s forwards}.intro-overlay::before{content:"";position:absolute;width:80vmax;height:80vmax;border-radius:50%;background:conic-gradient(from 0deg,transparent,#ffd56a22,transparent,#08e5f433,transparent);animation:spin 8s linear infinite}.intro-content{position:relative;text-align:center;padding:25px;animation:goldReveal 1.3s ease both}.intro-kicker{font-size:.72rem;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;margin-bottom:25px}.intro-title{font-family:Orbitron,sans-serif;font-size:clamp(2rem,7vw,5.5rem);line-height:1.1;font-weight:900;letter-spacing:-.04em;color:#fff;text-shadow:0 0 20px #ffd56a44}.intro-title em{font-style:normal;color:var(--gold)}.intro-creators{display:flex;align-items:center;justify-content:center;gap:17px;margin-top:28px;font-size:clamp(.95rem,2.5vw,1.4rem);font-weight:800}.intro-creators img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 24px #ffd56a55}.intro-creators .and{color:var(--gold);font-family:Orbitron,sans-serif}.intro-line{width:130px;height:2px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:lineGlow 1.2s ease-in-out infinite alternate}
+    .cursor-dot{position:fixed;left:0;top:0;width:17px;height:17px;border-radius:50%;pointer-events:none;z-index:100;transform:translate(-50%,-50%);background:conic-gradient(#ff1744,#ff9d00,#fff500,#28f76b,#00eaff,#526bff,#ed35ff,#ff1744);box-shadow:0 0 10px #fff,0 0 22px #00eaffaa;mix-blend-mode:screen;border:1px solid #ffffffbb}
+    .trail-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99}
+    .footer{width:min(1180px,92%);margin:0 auto;padding:0 0 26px;text-align:center;color:#61738c;font-size:.72rem}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-13px) rotate(1deg)}}@keyframes goldReveal{from{opacity:0;transform:translateY(25px) scale(.96);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}@keyframes lineGlow{from{opacity:.45;transform:scaleX(.7)}to{opacity:1;transform:scaleX(1.15)}}@keyframes overlayOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;gap:45px;padding-top:30px}.hero-copy{max-width:650px}.visual{width:min(100%,540px);margin:0 auto}.game-card{width:min(86%,440px)}.tag-one{left:0}.tag-two{right:0}.creators{align-items:flex-start;flex-direction:column}.status{display:none}}
+    @media(max-width:500px){.topbar{padding:18px 0}.brand{font-size:.95rem}.hero{padding-top:22px}.hero h1{font-size:clamp(3rem,16vw,4.7rem)}.intro{font-size:.96rem}.game-card{width:90%}.floating-tag{font-size:.66rem;padding:9px 10px}.tag-one{left:-1%}.tag-two{right:-1%}.creators{margin-bottom:42px}.creator-list{gap:12px;flex-wrap:wrap}.intro-creators{gap:9px}.intro-creators img{width:43px;height:43px}}
+    @media(pointer:coarse){.cursor-dot,.trail{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <!-- INTRO: animation dorée au chargement -->
+  <div class="intro-overlay" id="introOverlay" aria-label="Created by Snazyx and Vexy">
+    <div class="intro-content">
+      <div class="intro-kicker" data-i18n="introKicker">Une création originale</div>
+      <div class="intro-title">CREATED<br><em>BY</em></div>
+      <div class="intro-creators">
+        <img src="https://i.ibb.co/vxQ0C7Qv/ppminion.png" alt="Avatar de Snazyx">
+        <span>Snazyx</span><span class="and">&amp;</span>
+        <img src="https://i.ibb.co/LdjbBLBd/vexyavatar.png" alt="Avatar de Vexy">
+        <span>Vexy</span>
+      </div>
+      <div class="intro-line"></div>
+    </div>
+  </div>
 
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Lancé de Manette accueil">Lancé de Manette<span>.</span></a>
+    <div class="top-actions">
+      <div class="status" data-i18n="status">En ligne · Roblox</div>
+      <div class="lang-switch" aria-label="Language">
+        <button type="button" class="active" id="frBtn" aria-pressed="true">FR</button>
+        <button type="button" id="enBtn" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="hero">
+    <section class="hero-copy">
+      <div class="eyebrow"><span class="spark">✦</span><span data-i18n="eyebrow">Ton prochain jeu préféré</span></div>
+      <h1><span data-i18n="titleTop">Prêt à</span><span class="gradient" data-i18n="titleBottom">jouer ?</span></h1>
+      <p class="intro" data-i18n="description">Entre dans l’aventure, rejoins tes amis et viens découvrir notre jeu Roblox. Prépare-toi à jouer, à relever des défis et à créer tes propres moments épiques !</p>
+      <div class="features">
+        <div class="feature"><b>✦</b><span data-i18n="feature1">Une aventure à découvrir</span></div>
+        <div class="feature"><b>⚡</b><span data-i18n="feature2">Fun & action</span></div>
+        <div class="feature"><b>◈</b><span data-i18n="feature3">Avec tes amis</span></div>
+      </div>
+      <div class="cta-row">
+        <!-- IMPORTANT : remplace l'URL ci-dessous par le lien de ton jeu Roblox -->
+        <a class="play-btn" id="playButton" href="https://www.roblox.com/games/TON_ID_DE_JEU" target="_blank" rel="noopener noreferrer"><span data-i18n="play">PLAY GAME</span><span class="arrow">↗</span></a>
+        <span class="subnote" data-i18n="subnote">Gratuit sur Roblox · Rejoins la partie</span>
+      </div>
+
+      <section class="creators" aria-label="Créateurs du jeu">
+        <div class="creators-label" data-i18n="madeBy">Créé avec passion par</div>
+        <div class="creator-list">
+          <div class="creator"><img src="https://i.ibb.co/vxQ0C7Qv/ppminion.png" alt="Avatar de Snazyx"><div><strong>Snazyx</strong><small data-i18n="creatorRole">Créateur</small></div></div>
+          <span class="amp">&amp;</span>
+          <div class="creator"><img src="https://i.ibb.co/LdjbBLBd/vexyavatar.png" alt="Avatar de Vexy"><div><strong>Vexy</strong><small data-i18n="creatorRole">Créateur</small></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="visual" aria-label="Aperçu du jeu">
+      <div class="floating-tag tag-one">✦ <span data-i18n="tag1">L’aventure commence</span></div>
+      <div class="game-card">
+        <div class="game-card-inner">
+          <img src="https://i.ibb.co/vvZj794h/pp-lanc.png" alt="Illustration du jeu Roblox" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85'">
+          <div class="image-shade"></div>
+          <div class="image-caption"><div><small data-i18n="captionSmall">Ton aventure Roblox</small><h2 data-i18n="gameName">Lancé de Manette</h2></div><div class="roblox-mark" aria-hidden="true">◩</div></div>
+        </div>
+      </div>
+      <div class="floating-tag tag-two">⚡ <span data-i18n="tag2">À toi de jouer !</span></div>
+    </section>
+  </main>
+
+  <footer class="footer" data-i18n="footer">Ce site est un site de présentation de jeu créé par des fans/développeurs indépendants. Roblox est une marque de Roblox Corporation.</footer>
+
+  <canvas class="trail-canvas" id="trailCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <script>
+    const translations = {
+      fr: {
+        introKicker:'Une création originale', status:'En ligne · Roblox', eyebrow:'Ton prochain jeu préféré',
+        titleTop:'Prêt à', titleBottom:'jouer ?',
+        description:'Entre dans l’aventure, rejoins tes amis et viens découvrir notre jeu Roblox. Prépare-toi à jouer, à relever des défis et à créer tes propres moments épiques !',
+        gameName:'Lancé de Manette',feature1:'Une aventure à découvrir',feature2:'Fun & action',feature3:'Avec tes amis',play:'PLAY GAME',subnote:'Gratuit sur Roblox · Rejoins la partie',
+        tag1:'L’aventure commence',tag2:'À toi de jouer !',captionSmall:'Ton aventure Roblox',madeBy:'Créé avec passion par',creatorRole:'Créateur',
+        footer:'Ce site est un site de présentation de jeu créé par des fans/développeurs indépendants. Roblox est une marque de Roblox Corporation.'
+      },
+      en: {
+        introKicker:'An original creation', status:'Online · Roblox', eyebrow:'Your next favorite game',
+        titleTop:'Ready to', titleBottom:'play?',
+        description:'Jump into the adventure, team up with your friends, and discover our Roblox game. Get ready to play, take on challenges, and create your own epic moments!',
+        gameName:'Lancé de Manette',feature1:'An adventure to explore',feature2:'Fun & action',feature3:'Play with friends',play:'PLAY GAME',subnote:'Free on Roblox · Jump in now',
+        tag1:'The adventure starts',tag2:'Your turn to play!',captionSmall:'Your Roblox adventure',madeBy:'Made with passion by',creatorRole:'Creator',
+        footer:'This is an independent game showcase website. Roblox is a trademark of Roblox Corporation.'
+      }
+    };
+    const frBtn = document.getElementById('frBtn');
+    const enBtn = document.getElementById('enBtn');
+    function setLanguage(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(translations[lang][key])el.textContent=translations[lang][key]});
+      frBtn.classList.toggle('active',lang==='fr'); enBtn.classList.toggle('active',lang==='en');
+      frBtn.setAttribute('aria-pressed',String(lang==='fr'));enBtn.setAttribute('aria-pressed',String(lang==='en'));
+    }
+    frBtn.addEventListener('click',()=>setLanguage('fr'));
+    enBtn.addEventListener('click',()=>setLanguage('en'));
+
+    // Traînée rainbow fluide : un seul canvas évite les éléments qui se chevauchent.
+    const dot = document.getElementById('cursorDot');
+    const canvas = document.getElementById('trailCanvas');
+    const ctx = canvas.getContext('2d');
+    const points = [];
+    let hue = 0;
+    let animationFrame = 0;
+    const trailLifetime = 950;
+
+    function resizeTrailCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resizeTrailCanvas();
+    window.addEventListener('resize', resizeTrailCanvas, { passive: true });
+
+    function drawTrail() {
+      const now = performance.now();
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      while (points.length && now - points[0].time > trailLifetime) points.shift();
+
+      for (let i = 1; i < points.length; i++) {
+        const a = points[i - 1];
+        const b = points[i];
+        const opacity = Math.max(0, 1 - (now - b.time) / trailLifetime);
+        if (opacity <= 0) continue;
+
+        const hueA = (a.hue + now * 0.035) % 360;
+        const hueB = (b.hue + now * 0.035) % 360;
+        ctx.save();
+        ctx.globalAlpha = opacity;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsl(${hueB}, 100%, 60%)`;
+        ctx.lineWidth = 11 * opacity + 1;
+
+        const gradient = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+        gradient.addColorStop(0, `hsl(${hueA}, 100%, 58%)`);
+        gradient.addColorStop(0.5, `hsl(${(hueA + hueB) / 2}, 100%, 65%)`);
+        gradient.addColorStop(1, `hsl(${hueB}, 100%, 65%)`);
+        ctx.strokeStyle = gradient;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+
+        ctx.shadowBlur = 5;
+        ctx.strokeStyle = `rgba(255,255,255,${opacity * 0.8})`;
+        ctx.lineWidth = 2.2 * opacity;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      if (points.length) animationFrame = requestAnimationFrame(drawTrail);
+      else animationFrame = 0;
+    }
+
+    window.addEventListener('pointermove', e => {
+      if (e.pointerType === 'touch' || window.matchMedia('(pointer: coarse)').matches) return;
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      hue = (hue + 13) % 360;
+      points.push({ x: e.clientX, y: e.clientY, time: performance.now(), hue });
+      if (points.length > 180) points.shift();
+      if (!animationFrame) animationFrame = requestAnimationFrame(drawTrail);
+    }, { passive: true });
+
+    // L'animation d'intro se ferme automatiquement après environ 4,3 secondes.
+    window.setTimeout(()=>{const intro=document.getElementById('introOverlay');if(intro)intro.setAttribute('aria-hidden','true')},4300);
+    // Petit filet de sécurité si les animations sont réduites dans les réglages système.
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.getElementById('introOverlay').style.display='none'}
+  </script>
+</body>
+</html>
